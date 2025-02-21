@@ -52,7 +52,9 @@ function calculateImpact() {
 
     // Calculate solutions
     const priceIncrease = tariffAmount;
-    const volumeIncrease = Math.ceil((tariffAmount * units) / currentMargin);
+    const lostMarginDollars = currentGrossProfit - newGrossProfit;
+    const marginPerUnitWithTariff = price - (cogs + (cogs * tariffRate/100));
+    const volumeIncrease = Math.ceil(lostMarginDollars / marginPerUnitWithTariff);
     const costReduction = currentGrossProfit - newGrossProfit;
 
     // Update display
